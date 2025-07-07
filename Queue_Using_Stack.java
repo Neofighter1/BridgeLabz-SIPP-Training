@@ -17,7 +17,8 @@ public class Queue_Using_Stack {
         st.enqueue(15);
         st.enqueue(13);
         st.enqueue(19);
-        st.dequeue();
-        st.dequeue();
+        System.out.println(st.dequeue());
+        System.out.println(st.dequeue());
+        System.out.println(st.dequeue());
     }
 }
