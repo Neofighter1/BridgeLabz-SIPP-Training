@@ -7,12 +7,19 @@ public class stack {
         this.cap=1;
         top=-1;
         arr=new int[cap];
+
+        for(int i=0;i<arr.length;i++){
+            arr[i]=-1;
+        }
     }
     public void resize() {
         cap = 2 * cap;
         int[] newArr = new int[cap];
-        for(int i = 0; i <= top; i++) {
+        for(int i = 0; i < arr.length; i++) {
             newArr[i] = arr[i];
+        }
+        for(int i = arr.length; i<newArr.length; i++){
+            newArr[i] = -1;
         }
         arr = newArr;
     }
@@ -49,6 +56,11 @@ public class stack {
         a.push(30);
         a.push(40);
         a.push(50);
+        System.out.print("Data in array :");
+        for(int i=0;i<a.arr.length;i++){
+            System.out.print(a.arr[i]+" ");
+        }
+        System.out.println();
         System.out.println(a.peek());
         System.out.println(a.pop());
         System.out.println(a.pop());
