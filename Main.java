@@ -1,4 +1,3 @@
-package Oops;
 import java.util.*;
 class student{
     String Name;
