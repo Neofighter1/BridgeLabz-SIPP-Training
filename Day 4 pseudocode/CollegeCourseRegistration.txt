@@ -1,0 +1,42 @@
+CLASS Course
+    name
+    
+    CONSTRUCTOR(name)
+        THIS.name = name
+    END CONSTRUCTOR
+
+    FUNCTION equals(obj)
+        RETURN THIS.name EQUALS obj.name
+    END FUNCTION
+
+    FUNCTION hashCode()
+        RETURN THIS.name.hashCode()
+    END FUNCTION
+END CLASS
+
+CLASS Student
+    name
+    
+    CONSTRUCTOR(name)
+        THIS.name = name
+    END CONSTRUCTOR
+END CLASS
+
+CLASS CollegeRegistration
+    registrations = NEW MAP
+
+    FUNCTION addStudentToCourse(course, student)
+        registrations.computeIfAbsent(course, NEW LIST).add(student)
+    END FUNCTION
+
+    FUNCTION displayStudentsPerCourse()
+        FOR EACH entry IN registrations.entrySet() DO
+            PRINT "Course: " + entry.getKey().name
+            PRINT "Students: "
+            FOR EACH student IN entry.getValue() DO
+                PRINT "- " + student.name
+            END FOR
+            PRINT ""
+        END FOR
+    END FUNCTION
+END CLASS

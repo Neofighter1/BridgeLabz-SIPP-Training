@@ -1,0 +1,47 @@
+CLASS Account
+    PROTECTED accountNumber
+    PROTECTED balance
+
+    CONSTRUCTOR(accountNumber, initialBalance)
+        THIS.accountNumber = accountNumber
+        THIS.balance = initialBalance
+    END CONSTRUCTOR
+
+    FUNCTION withdraw(amount)
+        PRINT "Base class withdrawal method."
+    END FUNCTION
+END CLASS
+
+CLASS SavingAccount EXTENDS Account
+    PRIVATE CONSTANT MIN_BALANCE = 500.0
+
+    CONSTRUCTOR(accountNumber, initialBalance)
+        SUPER(accountNumber, initialBalance)
+    END CONSTRUCTOR
+
+    FUNCTION withdraw(amount)
+        IF THIS.balance - amount >= MIN_BALANCE THEN
+            THIS.balance = THIS.balance - amount
+            PRINT "Withdrawal successful. New balance: " + THIS.balance
+        ELSE
+            PRINT "Withdrawal failed. Insufficient balance."
+        END IF
+    END FUNCTION
+END CLASS
+
+CLASS CurrentAccount EXTENDS Account
+    PRIVATE CONSTANT OVERDRAFT_LIMIT = 1000.0
+
+    CONSTRUCTOR(accountNumber, initialBalance)
+        SUPER(accountNumber, initialBalance)
+    END CONSTRUCTOR
+
+    FUNCTION withdraw(amount)
+        IF THIS.balance + OVERDRAFT_LIMIT >= amount THEN
+            THIS.balance = THIS.balance - amount
+            PRINT "Withdrawal successful. New balance: " + THIS.balance
+        ELSE
+            PRINT "Withdrawal failed. Overdraft limit exceeded."
+        END IF
+    END FUNCTION
+END CLASS
