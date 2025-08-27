@@ -1,0 +1,31 @@
+Matrix attendance[30][30]
+
+Method markAttendance(student, day, value)
+    attendance[student][day] = value
+
+Method dailySummary(day)
+    count = 0
+    for each student
+        if attendance[student][day] == 1
+            count++
+    print count
+
+Method monthlySummary(student)
+    count = 0
+    for each day
+        if attendance[student][day] == 1
+            count++
+    print count
+
+Method defaulterList()
+    for each student
+        presentDays = count of 1 in row
+        if presentDays < 22
+            print student
+
+Main
+    markAttendance(1,1,1)
+    markAttendance(3,1,0)
+    dailySummary(10)
+    monthlySummary(5)
+    defaulterList()

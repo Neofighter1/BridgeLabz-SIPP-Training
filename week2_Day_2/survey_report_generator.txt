@@ -1,0 +1,22 @@
+Class SurveyResponse
+    restaurantName
+    rating
+
+responses = list of SurveyResponse
+
+Method generateReport(responses)
+    groupBy restaurantName
+    calculate average rating for each
+    print all results
+    find restaurant with highest rating
+    find restaurant with lowest rating
+
+Main
+    add SurveyResponse("PizzaHut",4)
+    add SurveyResponse("PizzaHut",5)
+    add SurveyResponse("KFC",3)
+    add SurveyResponse("KFC",4)
+    add SurveyResponse("Subway",5)
+    add SurveyResponse("Subway",4)
+    add SurveyResponse("Subway",5)
+    generateReport(responses)

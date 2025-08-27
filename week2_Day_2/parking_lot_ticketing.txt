@@ -1,0 +1,31 @@
+Class Vehicle
+    vehicleNumber
+    entryTime
+    Method calculateFee(exitTime)
+
+Class Car inherits Vehicle
+    Method calculateFee(exitTime)
+        hours = exitTime - entryTime
+        fee = 50 + (hours-1)*30
+        return fee
+
+Class Bike inherits Vehicle
+    Method calculateFee(exitTime)
+        hours = exitTime - entryTime
+        fee = 20 + (hours-1)*10
+        return fee
+
+Class Truck inherits Vehicle
+    Method calculateFee(exitTime)
+        hours = exitTime - entryTime
+        fee = 100 + (hours-1)*50
+        return fee
+
+Main
+    create Car c("KA05AB1234",10:00)
+    create Bike b("KA05XY7890",11:15)
+    create Truck t("KA09TR5566",09:30)
+
+    print c.calculateFee(13:30)
+    print b.calculateFee(12:00)
+    print t.calculateFee(14:00)
