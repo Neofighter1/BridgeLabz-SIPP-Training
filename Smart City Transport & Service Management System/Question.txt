@@ -1,0 +1,56 @@
+Smart City Transport & Service Management System
+
+Scenario:
+The City Council wants to launch a Smart City Transport & Service Management System that
+integrates buses, metros, taxis, and EV charging stations. The goal is to optimize routes,
+manage schedules, process passenger data, and provide real-time dashboards. The solution
+must use Java 8 features to be modern, clean, and extensible.
+Breakdown of Feature Usage:
+1. Lambda Expressions –
+○ Used for filtering and sorting transport schedules based on user preferences
+(e.g., earliest departure time, lowest fare).
+
+2. Method References –
+○ For quick printing of available services, logging, or invoking static utility methods
+for fare calculations.
+3. Default Methods in Interfaces –
+○ Interface TransportService defines default methods like
+printServiceDetails() for all transport types.
+
+4. Static Methods in Interfaces –
+○ Static method calculateDistance() in GeoUtils interface to compute
+distance between two locations.
+
+5. Stream APIs –
+○ Used to group and aggregate passenger data, calculate revenue, and find
+top-used routes.
+6. ForEach() Method –
+○ Display live schedules of all transport services to the dashboard.
+
+7. Collectors - Roles and Capabilities –
+○ groupingBy() for grouping passengers by route.
+○ partitioningBy() for separating peak vs. non-peak time trips.
+○ summarizingDouble() for total and average fares collected.
+8. Defining and Implementing Interfaces –
+○ TransportService implemented by BusService, MetroService,
+TaxiService.
+9. Functional Interfaces –
+○ FareCalculator functional interface with a single abstract method
+calculateFare(), implemented using lambdas.
+
+10. Marker Interfaces –
+○ EmergencyService marker interface for services that can bypass traffic rules
+(e.g., Ambulance, Fire Service).
+
+Goal: The final system should be able to:
+● Filter, group, and summarize transport data in real-time.
+● Dynamically display schedules on dashboards.
+● Easily extend to new services like ferry or bike rentals by just implementing the right
+interfaces.
+Flow in Real-Time Usage
+1. Passenger books a trip → Lambda filters and sorts available services.
+2. Dashboard updates live → ForEach displays current active services.
+3. Revenue reports generated → Collectors group and summarize data.
+4. System expansion → Adding FerryService just implements the interfaces, default
+methods, and optional overrides.
+5. Emergency scenario → Marker interface detects and prioritizes emergency services.
