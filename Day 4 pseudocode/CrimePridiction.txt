@@ -1,0 +1,42 @@
+CLASS Graph
+    PRIVATE adjList
+    PRIVATE isHighRisk
+
+    CONSTRUCTOR()
+        adjList = NEW MAP
+        isHighRisk = NEW MAP
+    END CONSTRUCTOR
+
+    FUNCTION addZone(zoneName)
+        adjList.putIfAbsent(zoneName, NEW LIST)
+        isHighRisk.putIfAbsent(zoneName, FALSE)
+    END FUNCTION
+
+    FUNCTION addConnection(zone1, zone2)
+        adjList.get(zone1).add(zone2)
+        adjList.get(zone2).add(zone1)
+    END FUNCTION
+
+    FUNCTION markHighRisk(zoneName)
+        isHighRisk.put(zoneName, TRUE)
+    END FUNCTION
+
+    FUNCTION findHighRiskAreas(startZone)
+        result = NEW LIST
+        visited = NEW MAP
+        dfs(startZone, visited, result)
+        RETURN result
+    END FUNCTION
+
+    FUNCTION dfs(zone, visited, result)
+        visited.put(zone, TRUE)
+        IF isHighRisk.get(zone) THEN
+            result.add(zone)
+        END IF
+        FOR neighbor IN adjList.get(zone) DO
+            IF NOT visited.getOrDefault(neighbor, FALSE) THEN
+                dfs(neighbor, visited, result)
+            END IF
+        END FOR
+    END FUNCTION
+END CLASS

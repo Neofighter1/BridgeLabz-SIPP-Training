@@ -1,0 +1,33 @@
+CLASS Transaction
+    merchant
+    month
+    amount
+
+    CONSTRUCTOR(merchant, month, amount)
+        THIS.merchant = merchant
+        THIS.month = month
+        THIS.amount = amount
+    END CONSTRUCTOR
+END CLASS
+
+FUNCTION main()
+    transactions = NEW LIST OF TRANSACTIONS
+
+    byMerchant = transactions.STREAM()
+                           .GROUP_BY(Transaction.merchant)
+
+    PRINT "Transactions grouped by Merchant:"
+    FOR EACH merchant, list IN byMerchant DO
+        total = list.STREAM().SUM(Transaction.amount)
+        PRINT "  " + merchant + ": " + total
+    END FOR
+
+    byMonth = transactions.STREAM()
+                         .GROUP_BY(Transaction.month)
+
+    PRINT "Transactions grouped by Month:"
+    FOR EACH month, list IN byMonth DO
+        total = list.STREAM().SUM(Transaction.amount)
+        PRINT "  " + month + ": " + total
+    END FOR
+END FUNCTION

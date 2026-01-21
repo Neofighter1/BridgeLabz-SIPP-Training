@@ -1,0 +1,53 @@
+INTERFACE Rentable
+    FUNCTION rent(duration)
+    FUNCTION returnVehicle()
+END INTERFACE
+
+ABSTRACT CLASS Vehicle
+    PROTECTED make
+    PROTECTED model
+    
+    CONSTRUCTOR(make, model)
+        THIS.make = make
+        THIS.model = model
+    END CONSTRUCTOR
+END CLASS
+
+CLASS Car EXTENDS Vehicle IMPLEMENTS Rentable
+    CONSTRUCTOR(make, model)
+        SUPER(make, model)
+    END CONSTRUCTOR
+
+    FUNCTION rent(duration)
+        PRINT THIS.make + " " + THIS.model + " rented for " + duration + " days."
+    END FUNCTION
+
+    FUNCTION returnVehicle()
+        PRINT THIS.make + " " + THIS.model + " returned."
+    END FUNCTION
+END CLASS
+
+CLASS Bike EXTENDS Vehicle IMPLEMENTS Rentable
+    CONSTRUCTOR(make, model)
+        SUPER(make, model)
+    END CONSTRUCTOR
+
+    FUNCTION rent(duration)
+        PRINT THIS.make + " " + THIS.model + " rented for " + duration + " hours."
+    END FUNCTION
+
+    FUNCTION returnVehicle()
+        PRINT THIS.make + " " + THIS.model + " returned."
+    END FUNCTION
+END CLASS
+
+CLASS VehicleFactory
+    STATIC FUNCTION getVehicle(type)
+        IF type IS "CAR" THEN
+            RETURN NEW Car("Toyota", "Camry")
+        ELSE IF type IS "BIKE" THEN
+            RETURN NEW Bike("Kawasaki", "Ninja")
+        END IF
+        RETURN NULL
+    END FUNCTION
+END CLASS

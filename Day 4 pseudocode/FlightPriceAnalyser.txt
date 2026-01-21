@@ -1,0 +1,44 @@
+CLASS Flight
+    price
+    duration
+    
+    CONSTRUCTOR(price, duration)
+        THIS.price = price
+        THIS.duration = duration
+    END CONSTRUCTOR
+END CLASS
+
+CLASS FlightComparator
+    FUNCTION compare(f1, f2)
+        IF f1.price IS NOT f2.price THEN
+            RETURN f1.price - f2.price
+        END IF
+        RETURN f1.duration - f2.duration
+    END FUNCTION
+END CLASS
+
+FUNCTION MergeSort(array, comparator)
+    aux = NEW ARRAY OF SAME SIZE AS array
+    sortHelper(array, aux, 0, array.length - 1, comparator)
+END FUNCTION
+
+FUNCTION sortHelper(array, aux, lo, hi, comparator)
+    IF hi <= lo THEN RETURN
+    mid = lo + (hi - lo) / 2
+    sortHelper(array, aux, lo, mid, comparator)
+    sortHelper(array, aux, mid + 1, hi, comparator)
+    merge(array, aux, lo, mid, hi, comparator)
+END FUNCTION
+
+FUNCTION merge(array, aux, lo, mid, hi, comparator)
+    FOR k FROM lo TO hi DO
+        aux[k] = array[k]
+    END FOR
+    i = lo, j = mid + 1
+    FOR k FROM lo TO hi DO
+        IF i > mid THEN array[k] = aux[j++]
+        ELSE IF j > hi THEN array[k] = aux[i++]
+        ELSE IF comparator.compare(aux[j], aux[i]) < 0 THEN array[k] = aux[j++]
+        ELSE array[k] = aux[i++]
+    END FOR
+END FUNCTION
